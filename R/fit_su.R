@@ -1,3 +1,4 @@
+#' @rdname fit_functions
 fit.su <- function (x, q) {
   eta <- 2 * q$z / acosh(.5 * (q$xu / q$xm + q$xl / q$xm))
   gamma <- eta * asinh((q$xl / q$xm - q$xu / q$xm) / 

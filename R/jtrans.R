@@ -19,14 +19,6 @@
 #' to be FALSE, then \code{jtrans} will return the original data as the 
 #' transformed data. 
 #' 
-#' Three types of transformations are SB, SL and SU. Their forms are described 
-#' below:
-#' \deqn{S_B:   Z = \gamma + \eta * ln((X-\epsilon) / (\lambda + \epsilon - X))}
-#' \deqn{S_L:   Z = \gamma + \eta * ln(X - \epsilon)}
-#' \deqn{S_U:   Z = \gamma + \eta * asinh((X-\epsilon) / \lambda)}
-#' in whihc Z is the standard normal varible, and X is the non-normal original
-#' data, all the necessary parameters will be returned.
-#' 
 #' @param x the non-normal numerical data.
 #' @param test the normality test used to select fits.
 #' @param exclude.original should the original data be excluded when comparing
@@ -69,15 +61,7 @@ jtrans <- function(x, test="shapiro.test", exclude.original=TRUE) {
   # test for transformed dataset corresponding to 101 z value
   for (z in seq(from=0.25, to=1.25, by=0.01)) {
     # calculate quantiles
-    qtls <- quantile(x, probs=pnorm(c(-3 * z, -z, z, 3 * z)))
-    q <- list(xl = qtls[2] - qtls[1],
-              xm = qtls[3] - qtls[2],
-              xu = qtls[4] - qtls[3],
-              QR = (qtls[4] - qtls[3]) * (qtls[2] - qtls[1]) / 
-                    (qtls[3] - qtls[2])^2, 
-              z  = z,
-              x2 = qtls[2], 
-              x3 = qtls[3])
+    q <- qtls(x, z)
     
     # fit sl distribution for every z
     res <- fit.sl(x, q)

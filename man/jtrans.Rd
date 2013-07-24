@@ -47,14 +47,6 @@
   In such cases, one should set \code{exclude.original} to
   be FALSE, then \code{jtrans} will return the original
   data as the transformed data.
-
-  Three types of transformations are SB, SL and SU. Their
-  forms are described below: \deqn{S_B: Z = \gamma + \eta *
-  ln((X-\epsilon) / (\lambda + \epsilon - X))} \deqn{S_L: Z
-  = \gamma + \eta * ln(X - \epsilon)} \deqn{S_U: Z = \gamma
-  + \eta * asinh((X-\epsilon) / \lambda)} in whihc Z is the
-  standard normal varible, and X is the non-normal original
-  data, all the necessary parameters will be returned.
 }
 \examples{
 # generate 100 non-normal data and transform it.

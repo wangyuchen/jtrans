@@ -1,3 +1,4 @@
+#' @rdname fit_functions
 fit.sl <- function(x, q) {
   if (q$xu / q$xm <= 1) return(NA)
   
