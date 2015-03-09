@@ -8,10 +8,7 @@
 #' transformed data and the corresponding type of Johnson curve and parameter 
 #' estimations.
 #' 
-#' Since the default Shapiro-Wilk test can only accept sample size with 3 and 
-#' 5000, sample size larger than 5000 will meet an error. In such cases, one 
-#' should specify another normality test in the test parameter, generally the
-#' \code{ad.test} in the \pkg{nortest} package is recommended.
+#' Since the default Shapiro-Wilk test can only accept sample size between 3 and 5000, there will be a problem when sample size is larger than 5000. In such cases, one should specify another normality test in the test parameter, generally the \code{ad.test} in the \pkg{nortest} package is recommended.
 #' 
 #' Sometimes, this algorithm may return poor fits. The most extreme case is 
 #' that all the transformed data have smaller p.values than the p.value of the 
@@ -21,8 +18,7 @@
 #' 
 #' @param x the non-normal numerical data.
 #' @param test the normality test used to select fits.
-#' @param exclude.original should the original data be excluded when comparing
-#'          fits.
+#' @param exclude.original whether the original data should be excluded when comparing fits.
 #'          
 #' @export
 #' 
