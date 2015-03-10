@@ -1,24 +1,17 @@
 #' Johnson Transformation for Normality
 #' 
-#' \code{jtrans} transforms imported non-normal data to normality.
+#' \code{jtrans} transforms any continuous univariate vector to a vector from standard normal distribution.
 #' 
-#' \code{jtrans} fits imported data to a set of 101 Johnson curves. Then a 
-#' normality test is used (Shapiro-Wilk test by default) to find the best fit 
-#' that have the maximum p.value under that given test. It returns the 
-#' transformed data and the corresponding type of Johnson curve and parameter 
-#' estimations.
+#' \code{jtrans} fits data to a set of distributions from Johnson family. A normality test is used (Shapiro-Wilk test by default) to find the best fit by choosing the fit with maximum p.value under that given test. It returns the transformed data, the corresponding type of Johnson curve and parameter estimations.
 #' 
 #' Since the default Shapiro-Wilk test can only accept sample size between 3 and 5000, there will be a problem when sample size is larger than 5000. In such cases, one should specify another normality test in the test parameter, generally the \code{ad.test} in the \pkg{nortest} package is recommended.
 #' 
-#' Sometimes, this algorithm may return poor fits. The most extreme case is 
-#' that all the transformed data have smaller p.values than the p.value of the 
-#' original data. In such cases, one should set \code{exclude.original}
-#' to be FALSE, then \code{jtrans} will return the original data as the 
-#' transformed data. 
+#' Sometimes, this algorithm may return poor fits. The most extreme case is that all the transformed data have smaller p.values than the original data's. In such cases, the \code{exclude.original} flag should be set to FALSE, so \code{jtrans} will return the original data as the transformed data. 
 #' 
 #' @param x the non-normal numerical data.
 #' @param test the normality test used to select fits.
 #' @param exclude.original whether the original data should be excluded when comparing fits.
+#' @param z.length the length of the z vector. It's also the number of different fits estiamted in the algorithm. Set larger z.length value if you want extra precision.
 #'          
 #' @export
 #' 
@@ -41,7 +34,8 @@
 #' jt <- jtrans(x)
 #' jt
 
-jtrans <- function(x, test="shapiro.test", exclude.original=TRUE) {
+jtrans <- function(x, test="shapiro.test", exclude.original=TRUE, 
+                   z.length = 101) {
   # set trans to be the original data, collect original parameters
   x <- as.numeric(x)
   trans <- x
@@ -55,7 +49,7 @@ jtrans <- function(x, test="shapiro.test", exclude.original=TRUE) {
   
   
   # test for transformed dataset corresponding to 101 z value
-  for (z in seq(from=0.25, to=1.25, by=0.01)) {
+  for (z in seq(from=0.25, to=1.25, length.out = z.length)) {
     # calculate quantiles
     q <- qtls(x, z)
     
