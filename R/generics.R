@@ -5,9 +5,9 @@
 # y <- jtrans(x)
 # summary(y)
 
-print.jtrans <- function(y) {
-  print(y$transformed)
-}
+# print.jtrans <- function(y) {
+#   print(y$transformed)
+# }
 
 summary.jtrans <- function(y, latex = TRUE) {
   if (latex == F) y
@@ -20,13 +20,26 @@ summary.jtrans <- function(y, latex = TRUE) {
                          sprintf("%.4f", y$eta), ")\\ln\\frac{X-(", 
                          sprintf("%.4f", y$epsilon), 
                          ")}{", sprintf("%.4f", y$lambda), "+(", 
-                         sprintf("%.4f", y$epsilon), ")-X}", 
-                         sprintf("%.4f", y$epsilon), "< X <", 
-                         sprintf("%.4f", y$epsilon + y$lambda), "\\]")
+                         sprintf("%.4f", y$epsilon), ")-X} \\]")
              cat(sb)
            },
-           "SL" = print("SL"),
-           "SU" = print("SU"))
+           "SL" = {
+             sl <- paste("\\[Y = \\gamma+\\eta \\ln(X-\\epsilon) = ",
+                         sprintf("%.4f", y$gamma), "+(", 
+                         sprintf("%.4f", y$eta), ")\\ln(X-(", 
+                         sprintf("%.4f", y$epsilon), ") \\]")
+             cat(sl)
+           },
+           "SU" = {
+             su <- paste("\\[ Y=\\gamma+\\eta", 
+                         "\\textrm{sinh}^{-1}\\frac{x-\\epsilon}{\\lambda}=",
+                         sprintf("%.4f", y$gamma), "+(", 
+                         sprintf("%.4f", y$eta), 
+                         ")\\textrm{sinh}^{-1}\\frac{X-(", 
+                         sprintf("%.4f", y$epsilon), 
+                         ")}{", sprintf("%.4f", y$lambda), "} \\]")
+             cat(su)
+           })
   }
 }
 
