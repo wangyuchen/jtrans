@@ -1,10 +1,16 @@
 Package: jtrans
-Type: Package
-Title: Johnson transformation for normality.
+Title: Johnson Transformation for Normality
 Version: 0.2
-Date: 2015-03-11
-Author: Yuchen Wang
-Maintainer: Yuchen Wang <ycwang0712@gmail.com>
-Description: Transforming non-normal data to normality using Johnson families 
-             of distributions.
-License: MIT
+Authors@R: person("Yuchen", "Wang", email = "ycwang0712@gmail.com", 
+  role = c("aut", "cre"))
+Description: Transforming univariate non-normal data to normality using Johnson 
+  families of distributions. This is a quite comprehensive method that can acco-
+  modates many kinds of non-normal data. A bunch of distributions will be fit 
+  and the corresponding p-values under a user-specified normality test will be 
+  given. The final transformation will be the one with the largest p-value under
+  the given normality test.
+Depends: R (>= 3.1.0)
+Suggests: 
+  nortest,
+  knitr
+License: GPL-2
