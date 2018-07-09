@@ -15,6 +15,20 @@ JohnsonDistribution package is based on I. D. Hill (1976). It aims to provide Jo
 
 ### What are the main functions?
 
-__jtrans__ is the main function. Import is a numeric vector of non-normal data. Output is the transformed data with Johnson curve and parameters. The Shapiro-Wilk test is used by default, and the p.value of the transformed data will also be returned.
+__jtrans__ is the main function. The input is a numeric vector of non-normal data. Output is the transformed data with Johnson curve and parameters. The Shapiro-Wilk test is used by default, and the p.value of the transformed data will also be returned.
+
+
+
+jtrans 0.2
+=============
+
+It has been more than three years since I first wrote this package. In the past
+few months, I received several emails regarding correct usage of this package, 
+so I decided to give it an update.
+
+
+It has been almost two years since I wrote that last paragraph. How time flies.
+
+
 
 
