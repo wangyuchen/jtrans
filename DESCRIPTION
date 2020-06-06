@@ -1,7 +1,7 @@
 Package: jtrans
 Title: Johnson Transformation for Normality
-Version: 0.2.1.9001
-Date: 2018-07-08
+Version: 0.2.1.9002
+Date: 2020-06-06
 Authors@R: person("Yuchen", "Wang", email = "ycwang0712@gmail.com",
         role = c("aut", "cre"))
 Description: Transforming univariate non-normal data to normality using
